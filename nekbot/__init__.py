@@ -11,4 +11,8 @@ __author__ = 'nekmo'
 if __name__ == '__main__':
     import logging
     logging.basicConfig(level=logging.DEBUG)
-    NekBot().start().loop()
+    nekbot = NekBot().start()
+    try:
+        nekbot.loop()
+    except (KeyboardInterrupt, SystemExit):
+        nekbot.close()

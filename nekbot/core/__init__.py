@@ -1,5 +1,6 @@
+# coding=utf-8
 from logging import getLogger
-from threading import Semaphore
+from time import sleep
 from nekbot.plugins import Plugins
 
 from .signals import events, event
@@ -14,7 +15,6 @@ logger = getLogger('nekbot')
 
 class NekBot(object):
     def __init__(self):
-        self.semaphore = Semaphore()
         self.protocols = Protocols(self, settings.PROTOCOLS)
         self.plugins = Plugins(self, settings.PLUGINS)
 
@@ -29,6 +29,19 @@ class NekBot(object):
     def start_plugins(self):
         self.plugins.start_all()
 
+    def close_protocols(self):
+        self.protocols.close()
+
+    def close_plugins(self):
+        self.plugins.close()
+
     def loop(self):
         logger.info('Everything has started')
-        self.semaphore.acquire()
+        while True: sleep(0.2)
+
+    def close(self):
+        logger.info('Closing...')
+        logger.debug('Closing plugins...')
+        self.close_plugins()
+        logger.debug('Closing protocols...')
+        self.close_protocols()

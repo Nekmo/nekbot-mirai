@@ -1,3 +1,4 @@
+from logging import getLogger
 import os
 import pytg
 from pytg.tg import message as tg_message
@@ -14,6 +15,8 @@ TELEGRAM_PUB = os.path.abspath(os.path.join(__dir__, 'bin/server.pub'))
 ADMIN_USERID = 14390491
 # Bot will respond to command the posted in this chat group
 CHAT_GROUP = 'Testing'
+
+logger = getLogger('nekbot.protocols.telegram')
 
 
 class Telegram(Protocol):
@@ -62,3 +65,6 @@ class Telegram(Protocol):
         # Quit gracefully
         # tg.safe_quit()
 
+    def close(self):
+        logger.debug('Closing Telegram...')
+        self.tg.safe_quit()
