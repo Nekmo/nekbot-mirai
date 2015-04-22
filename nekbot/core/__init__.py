@@ -7,13 +7,15 @@ from .signals import events, event
 from nekbot.protocols import Protocols
 from nekbot.conf import settings
 from . import handlers
-
+from .. import __version__
 
 __author__ = 'nekmo'
 logger = getLogger('nekbot')
 
 
 class NekBot(object):
+    version = __version__
+
     def __init__(self):
         self.protocols = Protocols(self, settings.PROTOCOLS)
         self.plugins = Plugins(self, settings.PLUGINS)

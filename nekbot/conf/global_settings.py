@@ -4,6 +4,7 @@ PROTOCOLS = [
 
 PLUGINS = [
     'hello',
+    'bot',
 ]
 
 SYMBOL = '!'
