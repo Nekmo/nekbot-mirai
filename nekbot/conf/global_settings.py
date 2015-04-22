@@ -1,3 +1,7 @@
 PROTOCOLS = [
     'telegram',
 ]
+
+PLUGINS = [
+    'hello',
+]
