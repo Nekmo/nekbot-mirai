@@ -59,12 +59,6 @@ class Telegram(Protocol):
             # Keep on polling so that messages will pass through our pipeline
             self.tg.poll()
 
-            # if QUIT:
-            #     break
-
-        # Quit gracefully
-        # tg.safe_quit()
-
     def close(self):
         logger.debug('Closing Telegram...')
         self.tg.safe_quit()

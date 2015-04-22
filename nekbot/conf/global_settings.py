@@ -5,3 +5,5 @@ PROTOCOLS = [
 PLUGINS = [
     'hello',
 ]
+
+SYMBOL = '!'
